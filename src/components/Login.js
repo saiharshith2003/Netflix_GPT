@@ -21,7 +21,7 @@ const Login = () => {
                 <input className="w-full px-4 py-4 m-2 border bg-gray-950 rounded-lg bg-opacity-35" type="text" placeholder="Email or phone number" />
                 <input className="w-full px-4 py-4 m-2 border bg-gray-950 rounded-lg bg-opacity-35" type="password" placeholder="Enter password" />
                 {!isSignInForm && <input className="w-full px-4 py-4 m-2 border bg-gray-950 rounded-lg bg-opacity-35" type="password" placeholder="Re-enter password" />}
-                <button className="py-3 px-4 m-2 bg-red-500 rounded-lg">Sign in</button>
+                <button className="py-3 px-4 m-2 bg-red-500 rounded-lg w-full">Sign in</button>
                 <p className="py-2 m-2">{isSignInForm ? "New to Netflix? " : "Already a User? "}<span className="text-base font-semibold cursor-pointer" onClick={toggleForm}>{isSignInForm ? "Sign up now" : "Sign in now"}</span></p>
             </form>
         </div>
