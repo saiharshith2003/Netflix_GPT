@@ -1,7 +1,9 @@
+import Body from "./components/Body";
+
 const App = () => {
   return (
     <div>
-      <h1 className="text-4xl text-center">Hello</h1>
+      <Body />
     </div>
   )
 }
