@@ -14,14 +14,7 @@ const Browse = () => {
     useUpcoming()
     useTopRated()
     useTopRatedTv()
-    /*
-       MainContainer
-        -Video title
-        -Video Background
-       SecondaryContainer
-        -Movie Suggestions
-        -cards
-    */
+
     return (
         <div>
             <Header />
