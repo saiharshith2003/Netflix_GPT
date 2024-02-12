@@ -34,7 +34,7 @@ const Header = () => {
     }, [])
     return (
         <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between">
-            <img className="w-44 mx-28" src={netflixLogo} alt="Logo" />
+            <img className="w-44 mx-18" src={netflixLogo} alt="Logo" />
             {user && user.uid && (
                 <div className="py-5 px-8">
                     <button className="px-4 py-2 bg-red-600 rounded-lg" onClick={handleSignOut}>
