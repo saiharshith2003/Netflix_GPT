@@ -7,14 +7,14 @@ const VideoBackground = ({ movieId }) => {
     const trailer = useSelector((store) => store.movies?.trailerInfo)
     console.log("Hi", trailer)
     return (
-        <div className="w-screen ">
+        <div className="w-screen overflow-x-hidden">
             <iframe
-                className="w-screen absolute mt-[-6%] aspect-video "
+                className="w-[99%]  aspect-video "
 
                 src={
                     "https://www.youtube.com/embed/" +
                     trailer?.key +
-                    "?&autoplay=1&mute=1&start=14&rel=0&start=13"
+                    "?rel=0&autoplay=1&mute=1&start=14&end=140&controls=0&loop=1&iv_load_policy=3"
                 }
                 title="YouTube video player"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
