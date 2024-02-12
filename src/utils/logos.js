@@ -9,3 +9,11 @@ export const API_OPTIONS = {
     }
 };
 export const nowPlayingMoviesUrl = 'https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1';
+export const getRandomElementFromArray = (array) => {
+    if (Array.isArray(array) && array.length > 0) {
+        const randomIndex = Math.floor(Math.random() * array.length);
+        return array[randomIndex];
+    } else {
+        return null;
+    }
+}
