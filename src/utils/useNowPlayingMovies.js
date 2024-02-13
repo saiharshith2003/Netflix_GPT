@@ -1,9 +1,10 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { API_OPTIONS, nowPlayingMoviesUrl } from "../utils/logos";
 import { useEffect } from "react";
 import { addNowPlayingMovies } from "./moviesSlice";
 const useNowPlayingMovies = () => {
     const dispatch = useDispatch()
+    const nowPlaying = useSelector(store => store.gpt.nowPlayingMovies)
     const nowPlayingMovies = async () => {
 
         const data = await fetch(nowPlayingMoviesUrl, API_OPTIONS)
@@ -12,7 +13,7 @@ const useNowPlayingMovies = () => {
         dispatch(addNowPlayingMovies(json.results))
     }
     useEffect(() => {
-        nowPlayingMovies()
+        !nowPlaying && nowPlayingMovies()
     }, [])
 }
 export default useNowPlayingMovies;

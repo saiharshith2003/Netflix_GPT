@@ -1,11 +1,11 @@
 import { useEffect } from "react"
 import { API_OPTIONS } from "../utils/logos"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { addTrailer } from "../utils/moviesSlice"
 
 const useMovieTrailer = (movieId) => {
     const dispatch = useDispatch()
-
+    const trailer = useSelector(store => store.gpt.trailerinfo)
     const movieTrailer = async () => {
         const data = await fetch("https://api.themoviedb.org/3/movie/" + movieId + "/videos?language=en-US", API_OPTIONS)
         const json = await data.json()
@@ -15,7 +15,7 @@ const useMovieTrailer = (movieId) => {
         dispatch(addTrailer(trailer))
     }
     useEffect(() => {
-        movieTrailer()
+        !trailer && movieTrailer()
     }, [])
 
 }
