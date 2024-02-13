@@ -5,7 +5,7 @@ export const API_OPTIONS = {
     method: 'GET',
     headers: {
         accept: 'application/json',
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNWMxNmExMGU0YTVkY2VmNjI2ZDU3NzQyNjZjZWIzMCIsInN1YiI6IjY1YzljM2ZiZTRiNTc2MDE3ZDE3M2NmOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9_xIspTV-t_8Fpjry5DsYGhc0RDEirwo5fM65FPFLSE'
+        Authorization: 'Bearer ' + process.env.REACT_APP_TMDB_API
     }
 };
 export const nowPlayingMoviesUrl = 'https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1';
@@ -21,4 +21,4 @@ export const getRandomElementFromArray = (array) => {
 export const IMG_CDN = "https://image.tmdb.org/t/p/w500/"
 
 
-export const GPT_API = "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"
+export const GPT_API = process.env.REACT_APP_GPT_API
