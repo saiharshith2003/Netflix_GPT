@@ -3,6 +3,7 @@ import openai from '../utils/openai';
 import { API_OPTIONS } from '../utils/logos';
 import { addSearchResults } from '../utils/gptSlice';
 import { useDispatch } from 'react-redux';
+
 const GptSearchBar = () => {
   const searchText = useRef()
 
@@ -21,7 +22,7 @@ const GptSearchBar = () => {
     const gptQuery =
       "Act as a Movie Recommendation system and suggest some movies for the query : " +
       searchText.current.value +
-      ". only give me names of 5 movies, comma seperated like the example result given ahead. Example Result: Gadar, Sholay, Don, Golmaal, Koi Mil Gaya";
+      ". only give me names of 5 movies, comma seperated like the example result given ahead. Example Result: Gadar, Sholay, Don, Golmaal, Koi Mil Gaya, if he gives a movie name just give the result as single movie of that dont show any other movies show only that movie result and if you cant find any result just give the result as No results found";
     const moviesSuggestions = await openai.chat.completions.create({
       messages: [{ role: 'user', content: gptQuery }],
       model: 'gpt-3.5-turbo',
@@ -32,7 +33,7 @@ const GptSearchBar = () => {
     const PromiseData = moviesData.map((movie) => tmdbSearchResults(movie))
     const resultsData = await Promise.all(PromiseData)
 
-    dispatch(addSearchResults(resultsData))
+    dispatch(addSearchResults({ movieNames: moviesData, gptResults: resultsData }))
   };
 
   return (

@@ -5,13 +5,13 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { addUser, removeUser } from "../utils/userSlice";
-import { toggleGpt } from "../utils/gptSlice";
+import { removeSearchResults, toggleGpt } from "../utils/gptSlice";
 
 const Header = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const user = useSelector((store) => store.user);
-
+    const showSearch = useSelector((store) => store.gpt.showSearch)
     const handleSignOut = () => {
         signOut(auth).then(() => {
             // Handle sign out success
@@ -38,7 +38,10 @@ const Header = () => {
     const handleShowGpt = () => {
         dispatch(toggleGpt());
     }
-
+    const handleShowGptHome = () => {
+        dispatch(toggleGpt())
+        dispatch(removeSearchResults())
+    }
 
 
     return (
@@ -49,9 +52,15 @@ const Header = () => {
             {user && user.uid && (
                 <div className="py-2 px-4 flex">
                     <div>
-                        <button className="bg-purple-800 px-4 py-2 bg-opacity-75 text-base rounded-lg text-white hover:bg-opacity-50" onClick={handleShowGpt}>
-                            GPTSearch
-                        </button>
+                        {
+                            showSearch ? <button className="bg-purple-800 px-4 py-2 bg-opacity-75 text-base rounded-lg text-white hover:bg-opacity-50" onClick={handleShowGpt}>
+                                Home
+                            </button>
+                                :
+                                <button className="bg-purple-800 px-4 py-2 bg-opacity-75 text-base rounded-lg text-white hover:bg-opacity-50" onClick={handleShowGptHome}>
+                                    GPTSearch
+                                </button>
+                        }
                     </div>
                     <div className="px-2">
                         <button className="px-4 py-2 bg-red-600 rounded-lg text-base bg-opacity-75  text-white hover:bg-opacity-50" onClick={handleSignOut}>
