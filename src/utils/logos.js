@@ -21,4 +21,4 @@ export const getRandomElementFromArray = (array) => {
 export const IMG_CDN = "https://image.tmdb.org/t/p/w500/"
 
 
-export const GPT_API = "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"
+export const GPT_API = "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"
