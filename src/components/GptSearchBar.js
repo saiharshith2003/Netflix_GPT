@@ -8,7 +8,7 @@ const GptSearchBar = () => {
   const searchText = useRef()
 
   const dispatch = useDispatch()
-  const tmdbSearchResults = async (movie) => {
+  const tlgbSearchResults = async (movie) => {
     const url = "https://api.themoviedb.org/3/search/movie?query=" + movie + "&include_adult=false&language=en-US&page=1";
     const data = await fetch(url, API_OPTIONS)
     const json = await data.json();
@@ -18,7 +18,7 @@ const GptSearchBar = () => {
 
   const handleSearch = async () => {
 
-
+    if (searchText === "") return null;
     const gptQuery =
       "Act as a Movie Recommendation system and suggest some movies for the query : " +
       searchText.current.value +
@@ -30,16 +30,16 @@ const GptSearchBar = () => {
     if (!moviesSuggestions) return
 
     const moviesData = moviesSuggestions.choices?.[0]?.message.content.split(",")
-    const PromiseData = moviesData.map((movie) => tmdbSearchResults(movie))
+    const PromiseData = moviesData.map((movie) => tlgbSearchResults(movie))
     const resultsData = await Promise.all(PromiseData)
 
     dispatch(addSearchResults({ movieNames: moviesData, gptResults: resultsData }))
   };
 
   return (
-    <div className="pt-[35%] md:pt-[8%] flex justify-center">
+    <div className="pt-[35%] lg:pt-[8%] flex justify-center">
       <form
-        className="w-full md:w-1/2 bg-black bg-opacity-70 rounded-lg overflow-hidden shadow-lg grid grid-cols-12"
+        className="w-full lg:w-1/2 bg-black bg-opacity-70 rounded-lg overflow-hidden shadow-lg grid grid-cols-12"
         onSubmit={(e) => e.preventDefault()}
       >
         <input

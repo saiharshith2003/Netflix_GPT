@@ -45,15 +45,15 @@ const Header = () => {
 
 
     return (
-        <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between">
+        <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex flex-col lg:flex-row justify-between">
             <div>
-                <img className="w-44 mx-18 " src={netflixLogo} alt="Logo" />
+                <img className="w-96 lg:w-44 mx-auto lg:mx-18  " src={netflixLogo} alt="Logo" />
             </div>
             {user && user.uid && (
-                <div className="py-2 px-4 flex">
+                <div className="py-4 lg:py-2 px-4 flex justify-between lg:flex">
                     <div>
                         {
-                            showSearch ? <button className="bg-purple-800 px-4 py-2 bg-opacity-75 text-base rounded-lg text-white hover:bg-opacity-50" onClick={handleShowGpt}>
+                            showSearch ? <button className="bg-purple-800 px-4 lg:px-8 py-2 bg-opacity-75 text-base rounded-lg text-white hover:bg-opacity-50" onClick={handleShowGpt}>
                                 Home
                             </button>
                                 :

@@ -7,7 +7,7 @@ const VideoBackground = ({ movieId }) => {
     const trailer = useSelector((store) => store.movies?.trailerInfo)
 
     return (
-        <div className="w-screen overflow-x-hidden">
+        <div className="w-screen overflow-x-hidden ">
             <iframe
                 className="w-[99%] aspect-video "
 

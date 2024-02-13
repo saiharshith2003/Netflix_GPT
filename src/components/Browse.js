@@ -17,7 +17,7 @@ const Browse = () => {
     useTopRated()
     useTopRatedTv()
     const showGptSearch = useSelector((store) => store.gpt.showSearch)
-    console.log(showGptSearch)
+
     return (
         <div>
             <Header />
