@@ -19,3 +19,6 @@ export const getRandomElementFromArray = (array) => {
 }
 
 export const IMG_CDN = "https://image.tmdb.org/t/p/w500/"
+
+
+export const GPT_API = "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"

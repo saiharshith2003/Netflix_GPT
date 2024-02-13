@@ -5,45 +5,62 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { addUser, removeUser } from "../utils/userSlice";
+import { toggleGpt } from "../utils/gptSlice";
+
 const Header = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const navigate = useNavigate();
-    const user = useSelector((store) => store.user)
+    const user = useSelector((store) => store.user);
+
     const handleSignOut = () => {
         signOut(auth).then(() => {
-
+            // Handle sign out success
         }).catch((error) => {
-            // An error happened.
+            // Handle sign out error
         });
-
-
     }
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 const { uid, email, displayName } = user;
-                dispatch(addUser({ uid: uid, email: email, displayName: displayName }))
-                navigate("/browse")
+                dispatch(addUser({ uid: uid, email: email, displayName: displayName }));
+                navigate("/browse");
             } else {
-                dispatch(removeUser())
-                navigate("/")
+                dispatch(removeUser());
+                navigate("/");
             }
         });
+
         return () => unsubscribe();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [dispatch, navigate]);
+
+    const handleShowGpt = () => {
+        dispatch(toggleGpt());
+    }
+
+
+
     return (
         <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between">
-            <img className="w-44 mx-18" src={netflixLogo} alt="Logo" />
+            <div>
+                <img className="w-44 mx-18 " src={netflixLogo} alt="Logo" />
+            </div>
             {user && user.uid && (
-                <div className="py-5 px-8">
-                    <button className="px-4 py-2 bg-red-600 rounded-lg" onClick={handleSignOut}>
-                        Sign out
-                    </button>
+                <div className="py-2 px-4 flex">
+                    <div>
+                        <button className="bg-purple-800 px-4 py-2 bg-opacity-75 text-base rounded-lg text-white hover:bg-opacity-50" onClick={handleShowGpt}>
+                            GPTSearch
+                        </button>
+                    </div>
+                    <div className="px-2">
+                        <button className="px-4 py-2 bg-red-600 rounded-lg text-base bg-opacity-75  text-white hover:bg-opacity-50" onClick={handleSignOut}>
+                            Sign out
+                        </button>
+                    </div>
                 </div>
             )}
         </div>
-
     );
 }
 
